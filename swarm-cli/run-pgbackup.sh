@@ -10,6 +10,6 @@ docker service create  \
 --name pgbackup                        \
 --network cluster-network                        \
 --replicas 1                        \
---env-file /opt/postdock/pgbackup/env_file \
+--env-file /home/ubuntu/postdock/pgbackup/env_file \
 --with-registry-auth \
 --restart-condition any postdock-barman-2.4-postgres-10
