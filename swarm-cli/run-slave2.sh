@@ -13,4 +13,4 @@ docker service create  \
 --env-file /home/ubuntu/postdock/pgslave2/env_file \
 --publish 5443:5432/tcp   \
 --with-registry-auth \
---restart-condition any postdock-postgres-10-repmgr-4.0-postgis2
+--restart-condition any postdock-postgres-11-repmgr-4.0

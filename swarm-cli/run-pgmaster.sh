@@ -12,4 +12,4 @@ docker service create  \
 --replicas 1                        \
 --env-file /home/ubuntu/postdock/pgmaster/env_file \
 --with-registry-auth \
---restart-condition any postdock-postgres-10-repmgr-4.0-postgis2
+--restart-condition any postdock-postgres-11-repmgr-4.0

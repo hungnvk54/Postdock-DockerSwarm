@@ -5,9 +5,9 @@ RUN apt-get update --fix-missing && \
 
 
 RUN TEMP_DEB="$(mktemp)" && \
-    wget -O "$TEMP_DEB" "http://atalia.postgresql.org/morgue/r/repmgr/repmgr-common_4.0.6-2.pgdg+1_all.deb" && \
+    wget -O "$TEMP_DEB" "atalia.postgresql.org/morgue/r/repmgr/repmgr-common_4.0.6-2.pgdg+1_all.deb" && \
     dpkg -i "$TEMP_DEB" && rm -f "$TEMP_DEB" && \
-    wget -O "$TEMP_DEB" "http://atalia.postgresql.org/morgue/r/repmgr/postgresql-$PG_MAJOR-repmgr_4.0.6-2.pgdg+1_amd64.deb" && \
+    wget -O "$TEMP_DEB" "atalia.postgresql.org/morgue/r/repmgr/postgresql-$PG_MAJOR-repmgr_4.0.6-2.pgdg+1_amd64.deb" && \
     (dpkg -i "$TEMP_DEB" || apt-get install -y -f) && rm -f "$TEMP_DEB"
 
 # Inherited variables

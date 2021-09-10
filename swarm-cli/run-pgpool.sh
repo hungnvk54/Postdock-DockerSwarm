@@ -4,7 +4,7 @@ docker service create  \
 --log-driver json-file                     \
 --log-opt max-size=32m                     \
 --log-opt max-file=16                      \
---mount "type=bind,source=/home/ubuntu/postdock/pgpool/ssh,destination=/home/postgres/.ssh/keys"                        \
+--mount "type=bind,source=/home/ubuntu/postdock/pgpool/ssh,destination=/home/postgres/. ssh/keys"                        \
 --mode replicated                        \
 --name pgpool                        \
 --network cluster-network                        \
