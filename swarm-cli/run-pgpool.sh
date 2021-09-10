@@ -4,12 +4,12 @@ docker service create  \
 --log-driver json-file                     \
 --log-opt max-size=32m                     \
 --log-opt max-file=16                      \
---mount "type=bind,source=/opt/postdock/pgpool/ssh,destination=/home/postgres/.ssh/keys"                        \
+--mount "type=bind,source=/home/ubuntu/postdock/pgpool/ssh,destination=/home/postgres/.ssh/keys"                        \
 --mode replicated                        \
 --name pgpool                        \
 --network cluster-network                        \
 --replicas 1                        \
---env-file /opt/postdock/pgpool/env_file \
+--env-file /home/ubuntu/postdock/pgpool/env_file \
 --publish 5430:5432/tcp   \
 --publish 9898:9898/tcp   \
 --with-registry-auth \
