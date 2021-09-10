@@ -4,8 +4,8 @@ docker service create  \
 --log-driver json-file                     \
 --log-opt max-size=32m                     \
 --log-opt max-file=16                      \
---mount "type=bind,source=/opt/postdock/pgbackup/backups,destination=/var/backups"                        \
---mount "type=bind,source=/opt/postdock/pgbackup/ssh,destination=/home/postgres/.ssh/keys"                        \
+--mount "type=bind,source=/home/ubuntu/postdock/pgbackup/backups,destination=/var/backups"                        \
+--mount "type=bind,source=/home/ubuntu/postdock/pgbackup/ssh,destination=/home/postgres/.ssh/keys"                        \
 --mode replicated                        \
 --name pgbackup                        \
 --network cluster-network                        \
