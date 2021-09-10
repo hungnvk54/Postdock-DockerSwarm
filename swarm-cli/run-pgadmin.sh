@@ -9,6 +9,6 @@ docker service create  \
 --name pgadmin                        \
 --network cluster-network                        \
 --replicas 1                        \
---env-file /opt/postdock/pgadmin/env_file \
+--env-file /home/ubuntu/postdock/pgadmin/env_file \
 --publish 5050:80/tcp                        \
 --restart-condition any dpage/pgadmin4
