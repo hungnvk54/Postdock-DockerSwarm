@@ -4,13 +4,13 @@ docker service create  \
 --log-driver json-file                     \
 --log-opt max-size=32m                     \
 --log-opt max-file=16                      \
---mount "type=bind,source=/opt/postdock/pgslave1/pgdata,destination=/var/lib/postgresql/data"                        \
---mount "type=bind,source=/opt/postdock/pgslave1/ssh,destination=/home/postgres/.ssh/keys"                        \
+--mount "type=bind,source=/home/ubuntu/postdock/pgslave1/pgdata,destination=/var/lib/postgresql/data"                        \
+--mount "type=bind,source=/home/ubuntu/postdock/pgslave1/ssh,destination=/home/postgres/.ssh/keys"                        \
 --mode replicated                        \
 --name pgslave1                        \
 --network cluster-network                        \
 --replicas 1                        \
---env-file /opt/postdock/pgslave1/env_file \
+--env-file /home/ubuntu/postdock/pgslave1/env_file \
 --publish 5441:5432/tcp   \
 --with-registry-auth \
 --restart-condition any postdock-postgres-10-repmgr-4.0-postgis2
