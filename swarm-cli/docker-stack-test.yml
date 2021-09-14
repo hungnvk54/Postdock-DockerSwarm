@@ -1,0 +1,58 @@
+version: "3.3"
+
+
+networks:
+    cluster-nginx:
+        driver: overlay
+
+
+
+services:
+    nginx:
+        image: nginx:latest
+        deploy:
+            endpoint_mode: vip
+            mode: replicated
+            placement:
+                constraints:
+                    - node.labels.pgtype == primary
+            replicas: 1
+            #restart_policy:
+            #    condition: any
+        networks:
+            cluster-nginx:
+                aliases:
+                    - pgmaster
+    
+    nginx1:
+        image: nginx:latest
+        deploy:
+            endpoint_mode: vip
+            mode: replicated
+            placement:
+                constraints:
+                    - node.labels.pgtype == replica1
+            replicas: 1 
+            #restart_policy:
+            #    condition: any
+        networks:
+            cluster-nginx:
+                aliases:
+                    - pgslave1
+    
+    nginx2:
+        image: nginx:latest
+        deploy:
+            endpoint_mode: vip
+            mode: replicated
+            placement:
+                constraints:
+                    - node.labels.pgtype == replica2
+            replicas: 1
+            #restart_policy:
+            #    condition: any
+        networks:
+            cluster-nginx:
+                aliases:
+                    - pgslave2
+                    
