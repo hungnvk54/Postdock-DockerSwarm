@@ -13,4 +13,4 @@ docker service create  \
 --publish 5430:5432/tcp   \
 --publish 9898:9898/tcp   \
 --with-registry-auth \
---restart-condition any postdock-pgpool-3.7-postgres-10
+--restart-condition any 571653913127.dkr.ecr.us-east-2.amazonaws.com/ekyc/postdock-pgpool-3.7-postgres-11

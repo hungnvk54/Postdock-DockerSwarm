@@ -12,4 +12,4 @@ docker service create  \
 --replicas 1                        \
 --env-file /home/ubuntu/postdock/pgbackup/env_file \
 --with-registry-auth \
---restart-condition any postdock-barman-2.4-postgres-10
+--restart-condition any 571653913127.dkr.ecr.us-east-2.amazonaws.com/ekyc/postdock-barman-2.4-postgres-11

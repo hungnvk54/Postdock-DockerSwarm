@@ -13,4 +13,4 @@ docker service create  \
 --env-file /home/ubuntu/postdock/pgslave1/env_file \
 --publish 5441:5432/tcp   \
 --with-registry-auth \
---restart-condition any postdock-postgres-11-repmgr-4.0
+--restart-condition any 571653913127.dkr.ecr.us-east-2.amazonaws.com/ekyc/postdock-postgres-11-repmgr-4.0
