@@ -1,0 +1,6 @@
+FROM postdock/pgpool
+
+MAINTAINER hungnv4@rikkeisoft.com
+
+ADD ssh /tmp/.ssh/keys
+ADD ssh /home/postgres/.ssh/keys

@@ -14,7 +14,7 @@ volumes:
 
 services:
     pgmaster:
-        image: 571653913127.dkr.ecr.us-east-2.amazonaws.com/ekyc/postdock-postgres-11-repmgr-4.0
+        image: 571653913127.dkr.ecr.us-east-2.amazonaws.com/ekyc/postgres
         deploy:
             endpoint_mode: vip
             mode: replicated
@@ -46,15 +46,13 @@ services:
           - 5422:5432
         volumes:
             - pgmaster:/var/lib/postgresql/data
-            - /home/ubuntu/postdock/ssh/:/tmp/.ssh/keys
-            - /home/ubuntu/postdock/ssh/:/home/postgres/.ssh/keys
         networks:
             cluster:
                 aliases:
                     - pgmaster
     
     pgslave1:
-        image: 571653913127.dkr.ecr.us-east-2.amazonaws.com/ekyc/postdock-postgres-11-repmgr-4.0
+        image: 571653913127.dkr.ecr.us-east-2.amazonaws.com/ekyc/postgres
         deploy:
             endpoint_mode: vip
             mode: replicated
@@ -82,15 +80,13 @@ services:
             - 5441:5432
         volumes:
             - pgslave1:/var/lib/postgresql/data
-            - /home/ubuntu/postdock/ssh:/tmp/.ssh/keys
-            - /home/ubuntu/postdock/ssh/:/home/postgres/.ssh/keys
         networks:
             cluster:
                 aliases:
                     - pgslave1
     
     pgslave2:
-        image: 571653913127.dkr.ecr.us-east-2.amazonaws.com/ekyc/postdock-postgres-11-repmgr-4.0
+        image: 571653913127.dkr.ecr.us-east-2.amazonaws.com/ekyc/postgres
         deploy:
             endpoint_mode: vip
             mode: replicated
@@ -118,15 +114,13 @@ services:
             - 5442:5432
         volumes:
             - pgslave2:/var/lib/postgresql/data
-            - /home/ubuntu/postdock/ssh:/tmp/.ssh/keys
-            - /home/ubuntu/postdock/ssh/:/home/postgres/.ssh/keys
         networks:
             cluster:
                 aliases:
                     - pgslave2
                     
     pgbackup:
-        image: 571653913127.dkr.ecr.us-east-2.amazonaws.com/ekyc/postdock-barman-2.4-postgres-11
+        image: 571653913127.dkr.ecr.us-east-2.amazonaws.com/ekyc/barman
         deploy:
             endpoint_mode: vip
             mode: replicated
@@ -147,15 +141,13 @@ services:
             BACKUP_SCHEDULE: "*/30 */5 * * *"
         volumes:
             - backup:/var/backups
-            - /home/ubuntu/postdock/ssh:/tmp/.ssh/keys
-            - /home/ubuntu/postdock/ssh/:/home/postgres/.ssh/keys
         networks:
             cluster:
                 aliases:
                     - backup
                     
     pgpool:
-        image: 571653913127.dkr.ecr.us-east-2.amazonaws.com/ekyc/postdock-pgpool-3.7-postgres-11
+        image: 571653913127.dkr.ecr.us-east-2.amazonaws.com/ekyc/pgpool
         deploy:
             endpoint_mode: vip
             mode: replicated
@@ -193,9 +185,6 @@ services:
         ports:
             - 5430:5432
             - 9898:9898 # PCP
-        volumes:
-            - /home/ubuntu/postdock/ssh:/tmp/.ssh/keys
-            - /home/ubuntu/postdock/ssh/:/home/postgres/.ssh/keys
         networks:
             cluster:
                 aliases:
